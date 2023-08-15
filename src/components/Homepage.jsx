@@ -5,6 +5,7 @@ import bgMobileLight from '../images/bg-mobile-light.jpg'
 import bgMobileDark from '../images/bg-mobile-dark.jpg'
 import desktopLight from '../images/bg-desktop-light.jpg'
 import desktopDark from '../images/bg-desktop-dark.jpg'
+
 import { Todo } from './Todo'
 import { Form } from './Form'
 import { Buttons } from './Buttons'
@@ -36,11 +37,11 @@ const Homepage = (props) => {
     const remainingTasks = tasks.filter((task) => id !== task.id);
     setTasks(remainingTasks);
   }
-
   const [tasks, setTasks] = useState(props.tasks);
   const taskList = tasks.filter(FILTER_MAP[filter]).map((task) => (
     <Todo id={task.id} name={task.name} completed={task.completed} key={task.id} toggleTaskCompleted={toggleTaskCompleted} deleteTask={deleteTask} />
   ));
+  console.log(taskList)
 
   const addTask =(name) =>{
     const newTask = {id: `todo-${nanoid()}`, name, completed: false}
@@ -54,7 +55,6 @@ const Homepage = (props) => {
   const [nightMode, setNightMode] = useState(false);
   const handleClick = (e) => {
     setNightMode(current => !current);
-    console.log('nm')
   }
   const bodyBG = document.body;
   nightMode ? bodyBG.classList.add('nightmode') : bodyBG.classList.remove('nightmode');
@@ -65,7 +65,7 @@ const Homepage = (props) => {
   else if(screenWidth >= 1280 && !nightMode)bgImage = desktopLight;
   else if(nightMode) bgImage = bgMobileDark;
   else if(!nightMode) bgImage = bgMobileLight;
-  
+
   return (
     <>
       <header>
@@ -83,7 +83,7 @@ const Homepage = (props) => {
 
         <section className={nightMode ? 'todo-list-wrapper night-mode':'todo-list-wrapper '}>
 
-          <ul role='list' aria-labelledby='list-heading' >
+          <ul role='list' aria-labelledby='list-heading' id='sortable' >
             {taskList}
           </ul>
 
@@ -98,9 +98,6 @@ const Homepage = (props) => {
             <button>Clear Completed</button>
           </div>
 
-          <div className={nightMode?'todo-buttons mobile night-mode':'todo-buttons mobile'}>
-            {filterList}
-          </div>
         </section>
 
         <div className={nightMode?'todo-buttons mobile night-mode':'todo-buttons mobile'}>

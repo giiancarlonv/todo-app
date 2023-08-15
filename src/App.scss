@@ -135,19 +135,7 @@ main{
       display: none;
     }
 
-    .todo-buttons.desktop{
-      position: relative;
-      display: none;
-      justify-content: space-evenly;
-      margin: 1rem 0;
-      button{
-        background: transparent;
-        border: none;
-        color: $dark-grayish-blue;
-        text-transform: capitalize;
-        font-family: 'Josefin Sans';
-      }
-    }
+ 
 
   }
   .todo-list-wrapper.night-mode{

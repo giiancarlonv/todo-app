@@ -125,19 +125,6 @@ main .todo-list-wrapper .item-details button {
 main .todo-list-wrapper .item-details-desktop {
   display: none;
 }
-main .todo-list-wrapper .todo-buttons.desktop {
-  position: relative;
-  display: none;
-  justify-content: space-evenly;
-  margin: 1rem 0;
-}
-main .todo-list-wrapper .todo-buttons.desktop button {
-  background: transparent;
-  border: none;
-  color: hsl(236, 9%, 61%);
-  text-transform: capitalize;
-  font-family: "Josefin Sans";
-}
 main .todo-list-wrapper.night-mode {
   background: hsl(235, 24%, 19%);
   box-shadow: 0 50px 50px -15px hsl(235, 21%, 11%);
