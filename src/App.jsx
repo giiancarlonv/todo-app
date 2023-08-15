@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Homepage from './components/Homepage'
-import styles from './styles/styles.css'
+import './App.css';
 
 const DATA = [
   
