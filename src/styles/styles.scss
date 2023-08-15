@@ -17,7 +17,7 @@ $DT-very-dark-grayish-blue2: hsl(237, 14%, 26%);
 *{
   margin: 0;
   padding: 0;
-  transition: .3s ease;
+  transition: .4s ease-in-out;
 }
 body{
   font-family: 'Josefin Sans';
@@ -60,9 +60,18 @@ main{
     padding: 0 1rem;
     margin: 2rem 0 1rem 0;
     label{
+      display: flex;
+      align-items: center;
       .check-button{
         margin-right: 1rem;
-        background: cyan;
+        border: none;
+        background: rgb(49,120,176);
+        background: linear-gradient(148deg, rgba(49,120,176,1) 0%, rgba(100,154,157,1) 50%, rgba(157,103,184,1) 100%); 
+        padding: 2px 5px;
+        border-radius: 50%;
+        img{
+          width: .6rem;
+        }
       }
       #add-todo{
         font-family: 'Josefin Sans';
@@ -104,6 +113,9 @@ main{
           border: none;
         }
       }
+      li:hover{
+        cursor: pointer;
+      }
     }
     .item-details{
       display: flex;
@@ -119,6 +131,9 @@ main{
         font-family: 'Josefin Sans';
       }
     }
+    .item-details-desktop{
+      display: none;
+    }
 
     .todo-buttons.desktop{
       position: relative;
@@ -126,19 +141,24 @@ main{
       justify-content: space-evenly;
       margin: 1rem 0;
       button{
-        background: none;
+        background: transparent;
         border: none;
         color: $dark-grayish-blue;
         text-transform: capitalize;
         font-family: 'Josefin Sans';
       }
     }
+
   }
   .todo-list-wrapper.night-mode{
     background: $DT-very-dark-desaturated-blue;
     box-shadow: 0 50px 50px -15px $DT-very-dark-blue;
     li{
       color: $DT-light-grayish-blue;
+      .todo-list{
+        border-bottom: 1px solid $DT-very-dark-grayish-blue2;
+      }
+     
     }
   }
   .todo-buttons.mobile{
@@ -168,5 +188,46 @@ main{
     text-align: center;
     background: transparent;
     color: $dark-grayish-blue;
+  }
+}
+/*DESKTOP*/
+@media (min-width: 1280px) {
+  header{
+    .header-text{
+      padding: 5rem 30% 1rem;
+    }
+  }
+  main{
+    margin: 0 30%;
+    .item-details.mobile, .todo-buttons.mobile{
+      display: none;
+    }
+    .item-details-desktop{
+      display: flex !important;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      color: $dark-grayish-blue;
+      font-size: .8em;
+      button{
+        background: none;
+        border: none;
+        color: $dark-grayish-blue;
+        font-family: 'Josefin Sans';
+      }
+      button:hover{
+        color: $very-dark-grayish-blue;
+      }
+      .filter-buttons{
+        margin: 0 -2rem;
+      }
+    }
+    .item-details-desktop.night-mode{
+    
+      button:hover{
+        color: $DT-light-grayish-blue-hover;
+        cursor: pointer;
+      }
+    }
   }
 }

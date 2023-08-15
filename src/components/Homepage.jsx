@@ -3,6 +3,8 @@ import moonIcon from '../images/icon-moon.svg'
 import sunIcon from '../images/icon-sun.svg'
 import bgMobileLight from '../images/bg-mobile-light.jpg'
 import bgMobileDark from '../images/bg-mobile-dark.jpg'
+import desktopLight from '../images/bg-desktop-light.jpg'
+import desktopDark from '../images/bg-desktop-dark.jpg'
 import { Todo } from './Todo'
 import { Form } from './Form'
 import { Buttons } from './Buttons'
@@ -17,7 +19,6 @@ const FILTER_MAP = {
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 
 const Homepage = (props) => {
-
   const [filter, setFilter] = useState('All');
   const filterList = FILTER_NAMES.map((name) =>(
     <Buttons key={name} name={name} isPressed={name === filter} setFilter={setFilter} />
@@ -49,17 +50,26 @@ const Homepage = (props) => {
   const taskCount = taskList.length;
   const taskNoun = taskList.length !== 1 ? 'tasks' : 'task';
   
+  /////////night mode//////////
   const [nightMode, setNightMode] = useState(false);
   const handleClick = (e) => {
     setNightMode(current => !current);
     console.log('nm')
   }
   const bodyBG = document.body;
-  nightMode ? bodyBG.classList.add('nightmode') : bodyBG.classList.remove('nightmode')
+  nightMode ? bodyBG.classList.add('nightmode') : bodyBG.classList.remove('nightmode');
+
+  const screenWidth = window.innerWidth;
+  let bgImage;
+  if(screenWidth >= 1280 && nightMode)bgImage = desktopDark;
+  else if(screenWidth >= 1280 && !nightMode)bgImage = desktopLight;
+  else if(nightMode) bgImage = bgMobileDark;
+  else if(!nightMode) bgImage = bgMobileLight;
+  
   return (
     <>
       <header>
-        <img src={nightMode ? bgMobileDark : bgMobileLight} alt="BG image" className='bg-image'/>
+        <img src={bgImage} alt="BG image" className='bg-image'/>
         <div className='header-text'>
           <h1>Todo</h1>
           <button onClick={handleClick} className='js-isNightMode'>
@@ -77,12 +87,18 @@ const Homepage = (props) => {
             {taskList}
           </ul>
 
-          <div className='item-details'>
+          <div className='item-details mobile'>
             <span>{taskCount} {taskNoun} left</span>
             <button>Clear Completed</button>
           </div>
 
-          <div className='todo-buttons desktop'>
+          <div className={nightMode?'item-details-desktop night-mode':'item-details-desktop'}>
+            <span>{taskCount} {taskNoun} left</span>
+            {filterList}
+            <button>Clear Completed</button>
+          </div>
+
+          <div className={nightMode?'todo-buttons mobile night-mode':'todo-buttons mobile'}>
             {filterList}
           </div>
         </section>
