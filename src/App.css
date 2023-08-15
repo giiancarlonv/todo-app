@@ -182,6 +182,9 @@ main aside {
   header .header-text {
     padding: 5rem 30% 1rem;
   }
+  header .header-text h1 {
+    font-size: 2.5em;
+  }
   main {
     margin: 0 30%;
   }
